@@ -4,13 +4,8 @@ import random
 
 # List of quotes
 quotes = [
-    "Be yourself; everyone else is already taken. - Oscar Wilde",
-    "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe. - Albert Einstein",
-    "In three words I can sum up everything I've learned about life: it goes on. - Robert Frost",
-    "The only way to do great work is to love what you do. - Steve Jobs",
-    "Life is what happens when you're busy making other plans. - John Lennon",
-    "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
-    "Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill",
+   "Life is what happens when you're busy making other plans. - John Lennon",
+   "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
 ]
 
 def get_random_quote():
