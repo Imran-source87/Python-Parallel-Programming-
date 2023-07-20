@@ -1,0 +1,51 @@
+import socket
+import threading
+import random
+
+# List of quotes
+quotes = [
+    "Be yourself; everyone else is already taken. - Oscar Wilde",
+    "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe. - Albert Einstein",
+    "In three words I can sum up everything I've learned about life: it goes on. - Robert Frost",
+    "The only way to do great work is to love what you do. - Steve Jobs",
+    "Life is what happens when you're busy making other plans. - John Lennon",
+    "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
+    "Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill",
+]
+
+def get_random_quote():
+    return random.choice(quotes)
+
+def handle_client(client_socket):
+    # Retrieve a random quote
+    quote = get_random_quote()
+
+    # Send the quote to the client
+    client_socket.send(quote.encode())
+
+    # Close the socket
+    client_socket.close()
+
+def main():
+    # Create socket
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    # Bind the socket
+    server_address = ('127.0.0.1', 8888)
+    server_socket.bind(server_address)
+
+    # Listen for incoming connections
+    server_socket.listen(5)
+    print("QOTD Server is listening...")
+
+    while True:
+        # Accept connection
+        client_socket, client_address = server_socket.accept()
+        print(f"Connection accepted from {client_address[0]}:{client_address[1]}")
+
+        # Create a thread to handle the client
+        client_handler = threading.Thread(target=handle_client, args=(client_socket,))
+        client_handler.start()
+
+if __name__ == "__main__":
+    main()
